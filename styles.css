@@ -34,6 +34,40 @@ html, body{
     background-color: lavender;
     box-shadow: 6px 6px 10px 0px rgba(0,0,0,0.35);
     border-radius: 20px;
+    display:flex;
+    padding: 2vw 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.bookCard:hover{
+    box-shadow: 6px 6px 10px 0px rgba(250,250,250,0.75);
+}
+
+p.bookTitle{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+
+#AddBookButton{
+    position: absolute;
+    bottom:2vw;
+    right:2vw;
+    width:3vw;
+    height:3vw;
+    border-radius: 2vw;
+    border: none;
+    background-color: lavender;
+    color: lightslategray;
+    box-shadow: 6px 6px 10px 0px rgba(0,0,0,0.35);
+    font-weight: bolder;
+    font-size: 2vw;
+}
+#AddBookButton:hover{
+    box-shadow: 6px 6px 10px 0px rgba(250,250,250,0.75);
+    color:antiquewhite;
 }
         /* only for testing out the grid */
 .test{
@@ -41,3 +75,4 @@ html, body{
     box-shadow: 6px 6px 10px 0px rgba(0,0,0,0.35);
     border-radius: 20px;
 }
+
