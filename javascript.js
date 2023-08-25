@@ -83,7 +83,6 @@ addBookButton.addEventListener('click', function() {
 });
 
 addBookForm.addEventListener('submit', function(event) {
-    console.log("button clicked");
     event.preventDefault();
 
     const bookTitle = titleInput.value;
