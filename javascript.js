@@ -14,9 +14,16 @@ function updateDisplayedCards(){
 
 function newCardsDisplay(){
     updateDisplayedCards();
+
+    
     for (let i = 0; i < myLibrary.length; i++) {
         const bookCard = document.createElement("div");
         bookCard.classList.add("bookCard");
+
+        const deleteBook = document.createElement("button");
+        deleteBook.classList.add("DeleteBook");
+        deleteBook.id = `DeleteCardNumber${i}`;
+        deleteBook.textContent = "x";
 
         const bookTitle = document.createElement("p");
         bookTitle.classList.add("bookTitle");
@@ -34,6 +41,7 @@ function newCardsDisplay(){
         bookRead.classList.add("bookRead");
         bookRead.textContent = myLibrary[i].read;
 
+        bookCard.appendChild(deleteBook);
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookPages);
@@ -49,6 +57,15 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(newBook);
     newCardsDisplay(); 
 }
+
+addEventListener("click",function(e){
+    if(e.target.className === "DeleteBook"){
+        const elementToDelete = e.target.id;
+        const indexNumber = elementToDelete[elementToDelete.length-1];
+        myLibrary.splice(indexNumber,1);
+        newCardsDisplay()
+    };  
+});
 
 const addBookButton = document.getElementById("AddBookButton");
 const addBookDialog = document.getElementById("addBookDialog");
