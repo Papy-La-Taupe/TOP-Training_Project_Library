@@ -47,8 +47,45 @@ function newCardsDisplay(){
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    newCardsDisplay();    
+    newCardsDisplay(); 
 }
 
-addBookToLibrary("testbook1", "joker", "23", "read");
-addBookToLibrary("testbook2", "jokster", "85", "not read");
+const addBookButton = document.getElementById("AddBookButton");
+const addBookDialog = document.getElementById("addBookDialog");
+const addBookForm = document.querySelector("#addBookDialog form");
+const addBook = document.getElementById("addBook");
+const cancel = document.getElementById("cancel");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const readInput = document.getElementById("read");
+const notReadInput = document.getElementById("not-read");
+
+addBookButton.addEventListener('click', function() {
+    addBookDialog.showModal();
+});
+
+addBookForm.addEventListener('submit', function(event) {
+    console.log("button clicked");
+    event.preventDefault();
+
+    const bookTitle = titleInput.value;
+    const bookAuthor = authorInput.value;
+    const bookPages = parseInt(pagesInput.value);
+    const bookRead = readInput.checked ? "Read" : "Not read";
+
+    addBookToLibrary(bookTitle, bookAuthor, bookPages, bookRead);
+
+    
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    readInput.checked = false;
+    notReadInput.checked = false;
+
+    addBookDialog.close();
+});
+
+cancel.addEventListener('click', function() {
+    addBookDialog.close();
+});
