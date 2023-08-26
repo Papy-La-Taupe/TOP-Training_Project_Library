@@ -37,15 +37,36 @@ function newCardsDisplay(){
         bookPages.classList.add("bookPages");
         bookPages.textContent = `${myLibrary[i].pages} Pages`
 
-        const bookRead = document.createElement("p");
-        bookRead.classList.add("bookRead");
-        bookRead.textContent = myLibrary[i].read;
+        const readDiv = document.createElement("div");
+
+        const readLabel = document.createElement("label");
+        readLabel.classList.add("bookRead");
+        readLabel.textContent = "";
+
+        const readRadioRead = document.createElement("input");
+        readRadioRead.type = "radio";
+        readRadioRead.name = `readStatus${i}`;
+        readRadioRead.value = "Read";
+        readRadioRead.checked = myLibrary[i].read === "Read";
+
+        const readRadioNotRead = document.createElement("input");
+        readRadioNotRead.type = "radio";
+        readRadioNotRead.name = `readStatus${i}`;
+        readRadioNotRead.value = "Not read";
+        readRadioNotRead.checked = myLibrary[i].read === "Not read";
+
+        readLabel.appendChild(readRadioRead);
+        readLabel.appendChild(document.createTextNode("Read"));
+        readLabel.appendChild(readRadioNotRead);
+        readLabel.appendChild(document.createTextNode("Not Read"));
+
+        readDiv.appendChild(readLabel);
 
         bookCard.appendChild(deleteBook);
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookPages);
-        bookCard.appendChild(bookRead);
+        bookCard.appendChild(readDiv);
 
         const displayGrid = document.getElementById("DisplayGrid");
         displayGrid.appendChild(bookCard);
@@ -64,6 +85,10 @@ addEventListener("click",function(e){
         const indexNumber = elementToDelete[elementToDelete.length-1];
         myLibrary.splice(indexNumber,1);
         newCardsDisplay()
+    }
+    else if (e.target.type === "radio") {
+        const indexNumber = e.target.name.match(/\d+/)[0]; // Extract the index from the radio button's name
+        myLibrary[indexNumber].read = e.target.value;
     };  
 });
 
